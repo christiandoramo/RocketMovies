@@ -1,6 +1,6 @@
 # Rocketseat trilha Explorer
 
-### Stage 10 - Integrande Back end e Front end
+### Stage 10 - Integrando Back end e Front end
 
 ## Finalizando o app RocketMovies
 
