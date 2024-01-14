@@ -1,6 +1,6 @@
 # Rocketseat trilha Explorer
 
-### Stage 10 - Integrande Back end e Front end
+### Stage 10 - Integrando Back end e Front end
 
 ## Finalizando o app RocketMovies
 
@@ -10,7 +10,7 @@
 
 - Back:
   
-  ![modelo ER](file:///C:/Users/DOMINI/OneDrive/%C3%81rea%20de%20Trabalho/root/repositorios%20windows/Exercicios%20Rocketseat/Rocketmovies/Modelo%20ER.png "img")
+  ![modelo ER](./Modelo%20ER.png "img")
 
 - Front:
   
