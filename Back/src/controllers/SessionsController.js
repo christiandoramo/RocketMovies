@@ -13,7 +13,7 @@ class SessionsController {
             throw new AppError('User not found', 400)
         const checkPassword = await pkg.compare(password, user.password)
         if (!checkPassword)
-            throw new AppError('Email or password incorrect')
+            throw new AppError('Email or password incorrect', 401)
 
         const { secret, expiresIn } = authConfig.jwt
         const token = jwt.sign({}, secret, {

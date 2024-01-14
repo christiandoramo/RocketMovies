@@ -13,6 +13,7 @@ const usersAvatarController = new UsersAvatarController()
 usersRoutes.post("/", usersController.create)
 usersRoutes.put("/", ensureAuthenticated, usersController.update)
 usersRoutes.get("/:id", usersController.show)
-usersRoutes.patch('/avatar', ensureAuthenticated, upload.single('avatar'), usersAvatarController.update)
+usersRoutes.patch('/avatar', ensureAuthenticated, upload.single('avatar'), usersAvatarController.update) 
+//formdata está em upload.single
 
 export { usersRoutes }

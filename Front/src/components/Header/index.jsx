@@ -1,8 +1,20 @@
 import { Container, Profile, Brand, Search } from './styles'
 import { Input } from '../Input'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/auth'
+import api from '../../services/api'
 
 export function Header() {
+
+  const navigate = useNavigate()
+  const { signOut, user } = useAuth()
+  console.log(user)
+
+  function handleSignOut() {
+    signOut()
+    navigate('/')
+  }
+
   return (
     <Container>
 
@@ -16,14 +28,15 @@ export function Header() {
       <Profile >
         <div>
           <Link to={'/profile'}>
-            <strong>Christian Oliveira</strong>
+            <strong>{user.name}</strong>
           </Link>
-          <span>sair</span>
+          <span onClick={() => handleSignOut()}>sair</span>
         </div>
         <Link to={'/profile'}>
           <img
-            src="https://avatars.githubusercontent.com/u/116025325?v=4"
-            alt="Foto do usuário"
+            src={user.avatar ?
+              `${api.defaults.baseURL}/files/${user.avatar}` : '/images/avatar_placeholder.svg'}
+            alt={"Foto de perfil do " + user.name}
           />
         </Link>
       </Profile>

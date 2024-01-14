@@ -8,12 +8,12 @@ export const Container = styled.div`
 `
 
 export const Form = styled.form`
-  padding: 0 136px;
-
+  padding: 240px 130px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap:8px;
 
   text-align: center;
   >div{
@@ -52,6 +52,6 @@ export const Form = styled.form`
 
 export const Background = styled.div`
   flex: 1;
-  background: url('/images/background.png') no-repeat center center;
+  background: url('/images/cinema.jpg') no-repeat center center;
   background-size: cover;
 `

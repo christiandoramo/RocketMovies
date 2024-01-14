@@ -74,14 +74,14 @@ export function Home() {
       <Section >
         <div>
           <h2>Meus filmes</h2>
-          <CreateNote to="/create-movie_note">
+          <CreateNote to="/create-note">
             <FiPlus />
             Adicionar filme
           </CreateNote>
         </div>
         <Content>
-          {notes && notes.map((note) => {
-            return (<Link to={`/movie-note-details/${note.id}`}><Note data={note} /></Link>)
+          {notes && notes.map((note,index) => {
+            return (<Link key={index} to={`/note-details/${note.id}`}><Note data={note} /></Link>)
           })}
         </Content>
       </Section>

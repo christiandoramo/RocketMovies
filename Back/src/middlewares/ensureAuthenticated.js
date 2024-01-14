@@ -3,16 +3,14 @@ import jwt from "jsonwebtoken";
 import authConfig from "../configs/auth.js";
 
 export function ensureAuthenticated(req, res, next) {
-    const authHeader = req.headers['authorization']
+    const authHeader = req.headers.authorization
     if (!authHeader)
         throw new AppError('Authorization token not found', 401)
-    console.log("req.headers.authorization: ", authHeader)
     // primeira posição é irrelevante
     const [, token] = authHeader.split(' ') //auth do tipo BEARER = "BEARER XXXTOKENXX"
 
     try {
         const verify = jwt.verify(token, authConfig.jwt.secret)
-        console.log(`verify? `, verify)
         const { sub: user_id } = verify
 
         req.user = {

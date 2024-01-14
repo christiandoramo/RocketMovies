@@ -9,18 +9,21 @@ export const Container = styled.div`
 `
 
 export const Form = styled.form`
-  padding: 0 136px;
-
+  padding: 240px 134px ;
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  gap:8px;
 
   text-align: center;
 
   > div{
     text-align: left;
     > h1 {
+    wrap: nowrap;
     font-size: 48px;
     color: ${({ theme }) => theme.COLORS.GRAY_DARK};
   }

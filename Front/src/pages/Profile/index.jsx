@@ -5,8 +5,39 @@ import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 
 import { Container, Form, Avatar } from "./styles";
+import { useState } from 'react';
+import { useAuth } from '../../hooks/auth';
+import api from '../../services/api';
+
+
 
 export function Profile() {
+  const { user, updateProfile } = useAuth();
+  const [name, setName] = useState(user.name)
+  const [email, setEmail] = useState(user.email)
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [avatar, setAvatar] = useState(user.avatar ?
+    `${api.defaults.baseURL}/files/${user.avatar}` : '/images/avatar_placeholder.svg') // url da imagem fica no banco de dados
+  const [file, setFile] = useState(null) // arquivo da imagem fica num disco de armazenamento
+
+  async function handleUpdate() {
+    const user = {
+      name,
+      email,
+      oldPassword,
+      newPassword
+    }
+    await updateProfile({ user, file })
+  }
+
+  function handleChangeAvatar(event) {
+    const newFile = event.target.files[0]
+    setFile(newFile)
+    const urlPreview = URL.createObjectURL(newFile)
+    setAvatar(urlPreview)
+  }
+
   return (
     <Container>
       <header>
@@ -16,7 +47,7 @@ export function Profile() {
       <Form>
         <Avatar>
           <img
-            src="https://avatars.githubusercontent.com/u/116025325?v=4"
+            src={avatar}
             alt="Foto do usuário"
           />
           <label htmlFor="avatar">
@@ -25,6 +56,7 @@ export function Profile() {
             <input
               id="avatar"
               type="file"
+              onChange={handleChangeAvatar}
             />
           </label>
         </Avatar>
@@ -33,27 +65,33 @@ export function Profile() {
           placeholder="Nome"
           type="text"
           icon={FiUser}
+          onChange={(e) => setName(e.target.value)}
+          value={name}
         />
 
         <Input
           placeholder="E-mail"
           type="text"
           icon={FiMail}
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
 
         <Input
           placeholder="Senha atual"
           type="password"
           icon={FiLock}
+          onChange={(e) => setOldPassword(e.target.value)}
         />
 
         <Input
           placeholder="Nova atual"
           type="password"
           icon={FiLock}
+          onChange={(e) => setNewPassword(e.target.value)}
         />
 
-        <Button title="Salvar" />
+        <Button title="Salvar" onClick={() => handleUpdate()} />
       </Form>
     </Container>
   )
