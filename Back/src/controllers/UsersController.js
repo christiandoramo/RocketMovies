@@ -26,7 +26,7 @@ class UsersController {
     }
     async update(req, res) {
         const { email, name, oldPassword, newPassword } = req.body
-        const { id } = req.params
+        const { id } = req.user
 
         const user = await orm('users').where({ id }).first()
         if (!user)

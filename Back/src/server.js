@@ -3,11 +3,15 @@ import express from 'express';
 import { AppError } from './utils/AppError.js';
 import { connection } from './database/db/index.js';
 import { routes } from './routes/index.js';
+import { UPLOADS_FOLDER } from './configs/upload.js';
+import cors from 'cors'
 
-const app = express()
 connection() // DB connection
-app.use(express.json())
-app.use(routes)
+const app = express() // iniciando app node com express
+app.use(cors()) // tornando a api acessível a diversas origens
+app.use(express.json()) // fazendo os middlewares apenas trabalhar com json e suas formatações
+app.use(routes) // usando todas as minhas rotas
+app.use('/files', express.static(UPLOADS_FOLDER)) // Criando rota de arquivos estaticos
 
 
 app.use((error, req, res, next) => {
