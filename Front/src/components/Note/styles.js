@@ -1,19 +1,22 @@
 import styled from 'styled-components'
 
 export const Container = styled.button`
-  width: 100%;
   ${'' /* background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700}; */}
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900} ;
   color: ${({ theme }) => theme.COLORS.GRAY_300};
-
   border: none;
   border-radius: 10px;
-
   padding: 32px;
-
   display:flex;
+  width: 100%;
   flex-direction: column;
+  flex:1;
   gap: 12px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   >p{
     color: theme.COLORS.GRAY;
     font-family: 'Roboto';
@@ -35,10 +38,15 @@ display: -webkit-box;
   
   >div{
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 6px;
   }
 
   > h1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex: 1;
     text-align: left;
     font-weight: 700;
@@ -47,8 +55,10 @@ display: -webkit-box;
   }
 
   > footer {
-    width: 100%;
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
     margin-top: 16px;
   }
   

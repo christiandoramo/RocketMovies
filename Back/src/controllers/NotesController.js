@@ -15,8 +15,11 @@ export class NotesController {
         if (!user)
             throw new AppError('User not found', 400)
         const [note_id] = await orm('notes').insert({ title, description, rating, user_id })
-        const tagsToInsert = tags.map(tag => ({ user_id, note_id, name: tag }))
-        await orm('tags').insert(tagsToInsert)
+        if (tags) {
+            const tagsToInsert = tags.map(tag => ({ user_id, note_id, name: tag }))
+            await orm('tags').insert(tagsToInsert)
+        }
+
         return res.status(200).json("Note created with success")
     }
     async show(req, res) {
@@ -36,8 +39,9 @@ export class NotesController {
         })
     }
     async index(req, res) {
-        const { title } = req.body
 
+        const { title } = req.query
+        console.log('title: ',title)
         let notes
         if (title) {
             notes = await orm("notes")
@@ -57,6 +61,8 @@ export class NotesController {
                 tags: tagsForThisNote
             }
         })
+        // const tagNames = notesWithTags.flatMap(tags => tags.name)
+        // console.log(tagNames)
         return res.status(200).json(notesWithTags)
     }
     async delete(req, res) {
@@ -66,7 +72,7 @@ export class NotesController {
         if (!id || !user_id)
             throw new AppError('Invalid params', 400)
         const user = await orm('users').where({ id: user_id }).first()
-        const note = await orm('notes').where({ id}).first()
+        const note = await orm('notes').where({ id }).first()
         if (!user)
             throw new AppError('User not found', 400)
         if (!note)
