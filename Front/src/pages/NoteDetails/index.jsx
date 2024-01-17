@@ -5,8 +5,8 @@ import { FiArrowLeft } from 'react-icons/fi'
 import { NoteDetail } from '../../components/NoteDetail'
 import { useEffect, useState } from 'react';
 import { getUserById } from '../../services/users'
-import { noteDeleteById,getNoteById } from '../../services/notes';
-import { useNavigate, useParams,Link } from 'react-router-dom'
+import { noteDeleteById, getNoteById } from '../../services/notes';
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import { Back } from '../../components/Back'
 
 export function NoteDetails() {
@@ -28,7 +28,6 @@ export function NoteDetails() {
     async function loadNote() {
       const response = await getNoteById(params.id)
       setData(response)
-      console.log('data: ', response)
     }
     loadNote()
     // loadUser()

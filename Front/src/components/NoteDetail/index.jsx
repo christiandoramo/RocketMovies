@@ -47,7 +47,7 @@ export function NoteDetail({ data, user, ...rest }) {
                     <img src={user.avatar ?
                         `${api.defaults.baseURL}/files/${user.avatar}` : '/images/avatar_placeholder.svg'}
                         alt={user && "Foto do " + user.name} /><span> Por {user && user.name} </span>
-                    <PiClock size={18} /><span> {'sdsa'} </span>
+                    <PiClock size={18} /><span> {formattedDate} </span>
                 </div>
                 {
                     data.tags &&
