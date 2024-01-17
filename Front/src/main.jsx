@@ -8,7 +8,8 @@ import { AuthProvider } from './hooks/auth'
 import { NotesProvider } from './hooks/notes';
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root')
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />

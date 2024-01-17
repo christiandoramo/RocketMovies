@@ -6,12 +6,12 @@ import { Section } from '../../components/Section'
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
-import { FiArrowLeft } from 'react-icons/fi'
 import { Container, Form } from './styles'
 import { useAuth } from '../../hooks/auth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../../services/api'
+import { Back } from '../../components/Back'
 
 export function CreateNote() {
   const navigate = useNavigate()
@@ -74,15 +74,14 @@ export function CreateNote() {
       <main>
         <Form>
           <header>
-            <Link to="/"><FiArrowLeft size={23} /><span>Voltar</span></Link>
+            <Back />
             <h1>Criar nova nota</h1>
           </header>
           <div className='grade-title'>
             <Input placeholder="Título" onChange={(e) => setTitle(e.target.value.trim())} />
             <Input placeholder="Sua nota (de 0 a 5)" type={'number'} onChange={(e) => handleRating(e)} />
           </div>
-          <Textarea placeholder="Observações" onChange={(e) => setDescription(e.target.value.trim())} />
-
+          <Textarea placeholder="Observações" onChange={(e) => setDescription(e.target.value)} />
 
           <Section title="Marcadores">
             <div className="tags">

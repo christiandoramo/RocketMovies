@@ -1,9 +1,8 @@
 import { FiPlus } from 'react-icons/fi'
-import { Container, Content, CreateNote } from './styles'
+import { Container, Content, CreateNote, Section } from './styles.jsx'
 import { Note } from '../../components/Note'
 import { Header } from '../../components/Header'
-import { Section } from '../../components/Section'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useNotes } from '../../hooks/notes'
 import { useEffect } from 'react'
 
@@ -33,7 +32,6 @@ export function Home() {
         </div>
         <Content>
           {notes && notes.map((note, index) => {
-            {/* <Link key={index} to={`/note-details/${note.id}`}> */ }
             return (<Note key={index} data={note} onClick={() => handleGoToDetails(note.id)} />)
           })}
         </Content>

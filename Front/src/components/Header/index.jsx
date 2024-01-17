@@ -7,7 +7,7 @@ import { useNotes } from '../../hooks/notes'
 
 
 export function Header() {
-  const { setTitle } = useNotes();
+  const { setTitle,title } = useNotes();
 
   const navigate = useNavigate()
   const { signOut, user } = useAuth()
@@ -24,7 +24,7 @@ export function Header() {
         <h1>RocketMovies</h1>
       </Brand>
       <Search>
-        <Input onChange={(e) => setTitle(e.target.value.trim())}
+        <Input value={title} onChange={(e) => setTitle(e.target.value.trim())}
           onKeyDown={e => { if (e.keyCode === 13) navigate('/') }} // ao apertar enter va para home
           placeholder="Pesquisar pelo título" />
       </Search>

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { getUserById } from '../../services/users'
 import { noteDeleteById,getNoteById } from '../../services/notes';
 import { useNavigate, useParams,Link } from 'react-router-dom'
+import { Back } from '../../components/Back'
 
 export function NoteDetails() {
   const [data, setData] = useState(null)
@@ -48,7 +49,7 @@ export function NoteDetails() {
       <main>
         <Content>
           <header>
-            <Link to="/"><FiArrowLeft size={23} /><span>Voltar</span></Link>
+            <Back />
             <ButtonText title="Excluir nota" onClick={deleteNote} />
           </header>
           {(data && user) ? <NoteDetail data={data} user={user} /> : null}

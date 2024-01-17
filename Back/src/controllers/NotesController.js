@@ -41,7 +41,6 @@ export class NotesController {
     async index(req, res) {
 
         const { title } = req.query
-        console.log('title: ',title)
         let notes
         if (title) {
             notes = await orm("notes")
@@ -62,7 +61,6 @@ export class NotesController {
             }
         })
         // const tagNames = notesWithTags.flatMap(tags => tags.name)
-        // console.log(tagNames)
         return res.status(200).json(notesWithTags)
     }
     async delete(req, res) {

@@ -8,6 +8,7 @@ import { Container, Form, Avatar } from "./styles";
 import { useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
+import { Back } from '../../components/Back';
 
 
 
@@ -22,13 +23,8 @@ export function Profile() {
   const [file, setFile] = useState(null) // arquivo da imagem fica num disco de armazenamento
 
   async function handleUpdate() {
-    const user = {
-      name,
-      email,
-      oldPassword,
-      newPassword
-    }
-    await updateProfile({ user, file })
+    const updated = Object.assign(user, { name, email, oldPassword, newPassword })
+    await updateProfile({ user: updated, file })
   }
 
   function handleChangeAvatar(event) {
@@ -41,7 +37,7 @@ export function Profile() {
   return (
     <Container>
       <header>
-        <Link to="/"><FiArrowLeft size={23} /><span>Voltar</span></Link>
+        <Back />
       </header>
 
       <Form>

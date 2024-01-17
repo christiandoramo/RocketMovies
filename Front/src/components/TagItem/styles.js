@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-shrink:0;
 
   background-color: ${({ theme, isnew }) => isnew ? "transparent" : theme.COLORS.BACKGROUND_900};
   color: ${({ theme }) => theme.COLORS.GRAY_300};
@@ -30,6 +31,7 @@ export const Container = styled.div`
   > input {
     color: ${({ theme }) => theme.COLORS.WHITE};
     background: transparent;
+
 
     border: none;
 

@@ -11,12 +11,14 @@ function AuthProvider({ children }) {
     async function signIn({ email, password }) {
         try {
             const response = await api.post('/sessions', { email, password })
-            const { token, user } = response.data
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}` // colocando nos cabeçalhos http o Bearer
-            localStorage.setItem('@rocketmovies:user', JSON.stringify(user))
-            localStorage.setItem('@rocketmovies:token', token)
-            setData({ user, token })
-            alert('Login with success')
+            if (response) {
+                const { token, user } = response.data
+                api.defaults.headers.common['Authorization'] = `Bearer ${token}` // colocando nos cabeçalhos http o Bearer
+                localStorage.setItem('@rocketmovies:user', JSON.stringify(user))
+                localStorage.setItem('@rocketmovies:token', token)
+                setData({ user, token })
+                alert('Login with success')
+            }
         } catch (e) {
             if (e.response) {
                 alert(e.response.data.message)
@@ -40,11 +42,12 @@ function AuthProvider({ children }) {
                 const { avatar } = res.data
                 user.avatar = avatar;
             }
-            await api.put('/users', user)
-            alert('Profile updated with success')
-            localStorage.setItem('@rocketmovies:user', JSON.stringify(user)) //reescrevendo user no localstorage
-            setData({ user, token: data.token })
-
+            const res = await api.put('/users', user)
+            if (res) {
+                alert('Profile updated with success')
+                localStorage.setItem('@rocketmovies:user', JSON.stringify(user)) //reescrevendo user no localstorage
+                setData({ user, token: data.token })
+            }
         } catch (e) {
             if (e.response)
                 alert(e.response.data.message)

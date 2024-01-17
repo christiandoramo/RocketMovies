@@ -20,4 +20,4 @@ const __dirname = path.dirname(__filename)
 npx knex migrate:list - veja migrates nao upadas
 npx knex migrate:down <nome> - para desmontar migrates
 npx knex migrate:up - veja montar as migrates - agora atualizadas
-npx knext migrate:latest - pode atualizar os desmontados
+npx knex migrate:latest - pode atualizar os desmontados

@@ -54,16 +54,6 @@ export const Form = styled.form`
     gap:24px;
 
     margin-bottom: 40px;
-    > a {
-    display: flex;
-    color: ${({ theme }) => theme.COLORS.GRAY_DARK};
-    justify-content: center;
-    gap: 8px;
-    align-self: flex-start;
-    >span {
-      display: block;
-      }
-    }
   }
   .options{
     display:flex;
